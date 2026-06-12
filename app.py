@@ -1,29 +1,13 @@
-import streamlit as st
 import pickle
-import numpy as np
+from turtle import st
 
-# Load model
-model = pickle.load(open("model.pkl", "rb"))
-
-st.title("Student Placement Prediction")
-
-cgpa = st.number_input(
-    "Enter CGPA",
-    min_value=0.0,
-    max_value=10.0,
-    step=0.1
-)
-
-iq = st.number_input(
-    "Enter IQ",
-    min_value=50,
-    max_value=200,
-    step=1
-)
+model = pickle.load(open('model.pkl', 'rb'))
+scaler = pickle.load(open('scaler.pkl', 'rb'))
 
 if st.button("Predict"):
 
-    prediction = model.predict([[cgpa, iq]])
+    features = scaler.transform([[cgpa, iq]])
+    prediction = model.predict(features)
 
     if prediction[0] == 1:
         st.success("Student is likely to be Placed")
