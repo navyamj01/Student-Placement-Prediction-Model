@@ -1,5 +1,3 @@
-# Student-Placement-Prediction-Model
-
 # Student Placement Prediction Model
 
 ## Live Demo
